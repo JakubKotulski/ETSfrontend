@@ -1,0 +1,24 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center !important;
+  flex-direction: column;
+}
+
+.double-form-field {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-error {
+  color: red;
+}

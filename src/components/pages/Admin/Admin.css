@@ -1,0 +1,14 @@
+.admin-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  width: 80%;
+  flex-direction: column;
+}
+
+.text-align {
+  max-height: 600px;
+  text-align: center;
+  margin-bottom: 0!important;
+}

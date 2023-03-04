@@ -1,0 +1,4 @@
+.pick-country-direction {
+  display: flex;
+  flex-direction: column;
+}
