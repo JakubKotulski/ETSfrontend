@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
+import { backendUrl } from "../../../config";
 import axios from "axios";
 
 import "./WorkShop.css";
@@ -27,7 +28,7 @@ const WorkShop = ({ user, date }) => {
 
     axios({
       method: "PUT",
-      url: "http://localhost:4000/me/waste",
+      url: `${backendUrl}/me/waste`,
       data: {
         waste: waste,
         wasteTrailer: wasteTrailer,
@@ -44,7 +45,7 @@ const WorkShop = ({ user, date }) => {
 
     axios({
       method: "PUT",
-      url: "http://localhost:4000/me/insurance",
+      url: `${backendUrl}/me/insurance`,
       headers: {
         Authorization: token,
       },
@@ -60,7 +61,7 @@ const WorkShop = ({ user, date }) => {
 
     axios({
       method: "PUT",
-      url: "http://localhost:4000/me/technicalReview",
+      url: `${backendUrl}/me/technicalReview`,
       headers: {
         Authorization: token,
       },
@@ -79,7 +80,7 @@ const WorkShop = ({ user, date }) => {
         headers: {
           Authorization: token,
         },
-        url: "http://localhost:4000/me/insuranceEnd",
+        url: `${backendUrl}/me/insuranceEnd`,
       }).then((res) => {
         window.location.reload();
       });
@@ -90,7 +91,7 @@ const WorkShop = ({ user, date }) => {
         headers: {
           Authorization: token,
         },
-        url: "http://localhost:4000/me/technicalReviewEnd",
+        url: `${backendUrl}/me/technicalReviewEnd`,
       }).then((res) => {
         window.location.reload();
       });

@@ -4,8 +4,8 @@ import Form from "react-bootstrap/Form";
 import "./ModalForm.css";
 import AlertInfo from "../AlertInfo/AlertInfo";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import axios from "axios";
+import { backendUrl } from "../../config";
 
 const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage, order, track }) => {
   const [username, setUsername] = useState("");
@@ -71,7 +71,7 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
 
     axios({
       method: "PUT",
-      url: "http://localhost:4000/order/me",
+      url: `${backendUrl}/order/me`,
       data: {
         id: track._id,
         startState: startState,

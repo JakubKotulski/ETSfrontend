@@ -17,6 +17,7 @@ import "./MyOrders.css";
 import PickCountries from "../../PickCountries/PickCountries";
 import PickModal from "../../PickModal/PickModal";
 import axios from "axios";
+import { backendUrl } from "../../../config";
 
 const Main = ({ userData }) => {
   const [maxValue, setMaxValue] = useState(12000);
@@ -44,7 +45,7 @@ const Main = ({ userData }) => {
 
     axios({
       method: "GET",
-      url: "http://localhost:4000/order/me",
+      url: `${backendUrl}/order/me`,
       headers: {
         Authorization: token,
       },
@@ -54,7 +55,7 @@ const Main = ({ userData }) => {
 
     axios({
       method: "GET",
-      url: "http://localhost:4000/order/me/rejected",
+      url: `${backendUrl}order/me/rejected`,
       headers: {
         Authorization: token,
       },
@@ -68,7 +69,7 @@ const Main = ({ userData }) => {
 
     axios({
       method: "POST",
-      url: "http://localhost:4000/order/create",
+      url: `${backendUrl}/order/create`,
       headers: {
         Authorization: token,
       },
@@ -131,7 +132,11 @@ const Main = ({ userData }) => {
                 <div className="info-box">
                   <div className="desctiption">
                     <p>Średnie zuzycie paliwa</p>
-                    <p>{userData.avarageFuelConsumption}</p>
+                    <p>
+                      {userData.avarageFuelConsumption || userData.avarageFuelConsumption === 0
+                        ? userData.avarageFuelConsumption.toFixed(2)
+                        : "ładowanie danych"}
+                    </p>
                   </div>
                   <FontAwesomeIcon className="icon-style-bigger" icon={faGasPump} />
                 </div>

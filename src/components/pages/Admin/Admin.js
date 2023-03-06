@@ -5,6 +5,7 @@ import ModalForm from "../../ModalForm/ModalForm";
 import OrdersToAccept from "../../OrdersToAccept/OrdersToAccept";
 import ModalData from "../../ModalData/ModalData";
 import axios from "axios";
+import { backendUrl } from "../../../config";
 import "./Admin.css";
 
 const Admin = () => {
@@ -19,7 +20,7 @@ const Admin = () => {
 
   const fetchUsers = async () => {
     try {
-      const data = await fetch("http://localhost:4000/users");
+      const data = await fetch(`${backendUrl}/users`);
       const users = await data.json();
       setUsers(users.users);
     } catch (err) {
@@ -31,7 +32,7 @@ const Admin = () => {
     axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:4000/orders",
+      url: `${backendUrl}/orders`,
     }).then((res) => {
       serOrders(res.data);
     });
@@ -46,7 +47,7 @@ const Admin = () => {
         password: password,
       },
       withCredentials: true,
-      url: "http://localhost:4000/user",
+      url: `${backendUrl}/user`,
     }).then((res) => {
       if (res.data === "User already exists") {
         setMessage(res.data);
@@ -60,7 +61,7 @@ const Admin = () => {
   const payForRepair = (id) => {
     axios({
       method: "PUT",
-      url: "http://localhost:4000/admin/repair",
+      url: `${backendUrl}/admin/repair`,
       data: {
         amount: amount,
         _id: id,
@@ -71,7 +72,7 @@ const Admin = () => {
   const updateCompanyBalance = () => {
     axios({
       method: "PUT",
-      url: "http://localhost:4000/admin/balance",
+      url: `${backendUrl}/admin/balance`,
       data: {
         amount: newbalance,
       },

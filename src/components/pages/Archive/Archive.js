@@ -1,6 +1,7 @@
 import Table from "react-bootstrap/Table";
 import "./Archive.css";
 import axios from "axios";
+import { backendUrl } from "../../../config";
 import { useState, useEffect } from "react";
 
 const Archive = ({ user }) => {
@@ -11,7 +12,7 @@ const Archive = ({ user }) => {
 
     axios({
       method: "GET",
-      url: "http://localhost:4000/orders",
+      url: `${backendUrl}/orders`,
       headers: {
         Authorization: token,
       },
@@ -20,13 +21,9 @@ const Archive = ({ user }) => {
     });
   };
 
-  console.log(orders);
-
   useEffect(() => {
     fetchOrders();
   }, []);
-
-  console.log(orders);
 
   return (
     <div className="archive-box">

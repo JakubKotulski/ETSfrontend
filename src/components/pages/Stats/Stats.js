@@ -1,4 +1,5 @@
 import axios from "axios";
+import { backendUrl } from "../../../config";
 import { useEffect, useState } from "react";
 import { VictoryBar, VictoryChart } from "victory";
 
@@ -12,17 +13,18 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
   const getUsers = () => {
     axios({
       method: "GET",
-      url: "http://localhost:4000/users",
+      url: `${backendUrl}/users`,
     }).then((res) => {
       setCompanyDistance(res.data.companyDistance);
       setCompanyOrders(res.data.companyOrders);
       setCompanyFuel(res.data.companyFuel);
+      console.log(res.data.companyDistance);
     });
   };
 
   const distanceData = [
-    { users: "ja", distance: distance },
-    { users: "firma", distance: companyDistance },
+    { users: "ja", distances: distance },
+    { users: "firma", distances: companyDistance },
   ];
 
   const ordersData = [
@@ -50,7 +52,7 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
           <span className="chart-header">Mój wynik: {distance}</span>
 
           <VictoryChart domainPadding={100}>
-            <VictoryBar data={distanceData} x="users" y="distance" />
+            <VictoryBar data={distanceData} x="users" y="distances" />
           </VictoryChart>
         </div>
       )}
@@ -73,7 +75,12 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
         <div className="chart-box">
           <span className="chart-header">Zuzyte Paliwo</span>
           <br />
-          <span className="chart-header">Mój wynik: {avarageFuelConsumption}</span>
+          <span className="chart-header">
+            Mój wynik:{" "}
+            {avarageFuelConsumption || avarageFuelConsumption === 0
+              ? avarageFuelConsumption.toFixed(2)
+              : "ładowanie danych"}
+          </span>
 
           <VictoryChart domainPadding={100}>
             <VictoryBar data={fuelData} x="users" y="fuel" />

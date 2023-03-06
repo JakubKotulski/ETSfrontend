@@ -10,6 +10,7 @@ import Ranking from "./components/pages/Ranking/Ranking";
 import WorkShop from "./components/pages/WorkShop/WorkShop";
 import Archive from "./components/pages/Archive/Archive";
 import "./App.css";
+import { backendUrl } from "./config";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -21,25 +22,25 @@ function App() {
   const isLogged = async () => {
     if (localStorage.getItem("token") == null) {
       if (path !== "/") {
-        window.location.href = "http://localhost:3000";
+        window.location.href = "/";
       }
     } else {
       const token = JSON.parse(JSON.stringify(localStorage.getItem("token")));
       try {
         const response = await axios({
           method: "POST",
-          url: "http://localhost:4000/welcome",
+          url: `${backendUrl}/welcome`,
           headers: {
             Authorization: token,
           },
         });
         setUser(response.data);
         if (path === "/admin" && !response.data.isAdmin) {
-          window.location.href = "http://localhost:3000/myOrders";
+          window.location.href = "/myOrders";
         }
       } catch (err) {
         if (path !== "/") {
-          window.location.href = "http://localhost:3000";
+          window.location.href = "/";
         }
         console.log(err);
       }

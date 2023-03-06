@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { backendUrl } from "../../../config";
 import "./SignIn.css";
 
 const SignIn = () => {
@@ -27,7 +28,7 @@ const SignIn = () => {
         password: password,
       },
       withCredentials: true,
-      url: "http://localhost:4000/user/signIn",
+      url: `${backendUrl}/user/signIn`,
     }).then((res) => {
       localStorage.setItem("token", res.data.token);
       if (res.data.user.isAdmin) {
@@ -50,8 +51,8 @@ const SignIn = () => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Control onChange={getPassword} type="password" placeholder="Hasło" />
         </Form.Group>
-        <Button variant="warning" type="submit">
-          Submit
+        <Button variant="outline-warning" type="submit">
+          Zaloguj
         </Button>
       </Form>
     </div>

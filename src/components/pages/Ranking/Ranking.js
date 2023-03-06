@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import { backendUrl } from "../../../config";
 import "./Ranking.css";
 
 const Ranking = () => {
@@ -24,7 +25,7 @@ const Ranking = () => {
   const getUsers = () => {
     axios({
       method: "GET",
-      url: "http://localhost:4000/users",
+      url: `${backendUrl}/users`,
     }).then((res) => {
       setUsers(res.data.users);
     });

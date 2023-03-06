@@ -3,6 +3,8 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import ModalData from "../ModalData/ModalData";
+import { backendUrl } from "../../config";
+
 const OrdersToAccept = ({ orders }) => {
   const [modalDataVisibility, setModalDataVisibility] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
@@ -15,7 +17,7 @@ const OrdersToAccept = ({ orders }) => {
   const acceptOrder = (_id, userID, distance) => {
     axios({
       method: "PUT",
-      url: "http://localhost:4000/order/accept",
+      url: `${backendUrl}/order/accept`,
       data: {
         _id: _id,
         userID: userID,
@@ -29,7 +31,7 @@ const OrdersToAccept = ({ orders }) => {
   const rejectOrder = (_id, userID) => {
     axios({
       method: "PUT",
-      url: "http://localhost:4000/order/reject",
+      url: `${backendUrl}/order/reject`,
       data: {
         _id: _id,
         userID: userID,
