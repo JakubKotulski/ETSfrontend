@@ -55,7 +55,7 @@ const Main = ({ userData }) => {
 
     axios({
       method: "GET",
-      url: `${backendUrl}order/me/rejected`,
+      url: `${backendUrl}/order/me/rejected`,
       headers: {
         Authorization: token,
       },
