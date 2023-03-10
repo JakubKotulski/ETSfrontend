@@ -53,7 +53,9 @@ const WorkShop = ({ user, date }) => {
         insuranceMonth: date.getMonth(),
         insuranceDay: date.getDay(),
       },
-    }).then((res) => {});
+    }).then((res) => {
+      window.location.reload();
+    });
   };
 
   const sendTechnicalReview = () => {
@@ -69,7 +71,9 @@ const WorkShop = ({ user, date }) => {
         technicalReviewMonth: date.getMonth(),
         technicalReviewDay: date.getDay(),
       },
-    }).then((res) => {});
+    }).then((res) => {
+      window.location.reload();
+    });
   };
 
   const compareDates = () => {
@@ -147,7 +151,6 @@ const WorkShop = ({ user, date }) => {
               <Button
                 onClick={() => {
                   sendInsurance();
-                  window.location.reload();
                 }}
                 variant="outline-dark"
               >
@@ -169,7 +172,6 @@ const WorkShop = ({ user, date }) => {
               <Button
                 onClick={() => {
                   sendTechnicalReview();
-                  window.location.reload();
                 }}
                 variant="outline-dark"
               >
