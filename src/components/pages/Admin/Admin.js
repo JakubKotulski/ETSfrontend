@@ -67,7 +67,7 @@ const Admin = () => {
         _id: id,
       },
     }).then((res) => {
-      location.window.reload();
+      window.location.reload();
     });
   };
 
