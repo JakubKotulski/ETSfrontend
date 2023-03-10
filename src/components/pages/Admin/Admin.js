@@ -76,7 +76,9 @@ const Admin = () => {
       data: {
         amount: newbalance,
       },
-    }).then((res) => {});
+    }).then((res) => {
+      window.location.reload();
+    });
   };
 
   const closeModal = () => {
@@ -116,7 +118,6 @@ const Admin = () => {
                   <Button
                     onClick={() => {
                       updateCompanyBalance();
-                      window.location.reload();
                     }}
                     variant="outline-success"
                   >
