@@ -65,9 +65,9 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
     setPassword(e.target.value);
   };
 
-  const sendOrder = (event) => {
+  const sendOrder = async (event) => {
     event.preventDefault();
-    const token = JSON.parse(JSON.stringify(localStorage.getItem("token")));
+    const token = await JSON.parse(JSON.stringify(localStorage.getItem("token")));
 
     axios({
       method: "PUT",
