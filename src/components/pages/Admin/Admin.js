@@ -66,7 +66,9 @@ const Admin = () => {
         amount: amount,
         _id: id,
       },
-    }).then((res) => {});
+    }).then((res) => {
+      location.window.reload();
+    });
   };
 
   const updateCompanyBalance = () => {
@@ -150,33 +152,30 @@ const Admin = () => {
               </Button>
             </td>
           </tr>
-          {users
-            // .filter((element) => element.isAdmin === false)
-            .map((user, index) => (
-              <tr key={index}>
-                <td style={{ verticalAlign: "middle" }}>{index + 1}</td>
-                <td style={{ verticalAlign: "middle" }}>{user.username}</td>
-                <td style={{ verticalAlign: "middle" }}>{user.technicalReview ? "OK" : "Brak"}</td>
-                <td style={{ verticalAlign: "middle" }}>{user.insurance ? "OK" : "Brak"}</td>
-                <td style={{ verticalAlign: "middle" }}>{user.waste}</td>
-                <td style={{ verticalAlign: "middle" }}>{user.wasteTrailer}</td>
-                <td style={{ verticalAlign: "middle" }}>
-                  <input type="number" onChange={getAmount} placeholder="kwota" style={{ marginBottom: "5px" }}></input>
-                  <Button
-                    onClick={() => {
-                      payForRepair(user._id);
-                      window.location.reload();
-                    }}
-                    variant="outline-success"
-                  >
-                    Napraw
-                  </Button>
-                </td>
-                <td>
-                  <img style={{ width: "90%" }} alt="Brak zdjęcia" src={user.wastePhoto}></img>
-                </td>
-              </tr>
-            ))}
+          {users.map((user, index) => (
+            <tr key={index}>
+              <td style={{ verticalAlign: "middle" }}>{index + 1}</td>
+              <td style={{ verticalAlign: "middle" }}>{user.username}</td>
+              <td style={{ verticalAlign: "middle" }}>{user.technicalReview ? "OK" : "Brak"}</td>
+              <td style={{ verticalAlign: "middle" }}>{user.insurance ? "OK" : "Brak"}</td>
+              <td style={{ verticalAlign: "middle" }}>{user.waste}</td>
+              <td style={{ verticalAlign: "middle" }}>{user.wasteTrailer}</td>
+              <td style={{ verticalAlign: "middle" }}>
+                <input type="number" onChange={getAmount} placeholder="kwota" style={{ marginBottom: "5px" }}></input>
+                <Button
+                  onClick={() => {
+                    payForRepair(user._id);
+                  }}
+                  variant="outline-success"
+                >
+                  Napraw
+                </Button>
+              </td>
+              <td>
+                <img style={{ width: "90%" }} alt="Brak zdjęcia" src={user.wastePhoto}></img>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
       <ModalForm

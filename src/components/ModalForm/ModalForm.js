@@ -89,7 +89,7 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
         Authorization: token,
       },
     }).then((res) => {
-      console.log(res);
+      window.location.reload();
     });
   };
 
@@ -109,7 +109,6 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
                 onSubmit={(event) => {
                   sendOrder(event);
                   closeModal();
-                  window.location.reload();
                 }}
               >
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -137,7 +136,12 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
                 <div className="double-form-field">
                   <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Cena / L</Form.Label>
-                    <Form.Control onChange={getFuelPrice} step="0.01" type="number" placeholder="Cena tankowanego paliwa" />
+                    <Form.Control
+                      onChange={getFuelPrice}
+                      step="0.01"
+                      type="number"
+                      placeholder="Cena tankowanego paliwa"
+                    />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicPassword">
