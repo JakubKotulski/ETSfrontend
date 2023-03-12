@@ -22,7 +22,6 @@ const PickModal = ({ show, handleClose, setOrders }) => {
       for (let i = 0; i < pickedCountries.length; i++) {
         if (pickedCountries[i] !== e.target.value) {
           arrayToSet.push(pickedCountries[i]);
-          console.log(e.target.value);
         }
       }
       setPickedCountries(arrayToSet);
@@ -32,12 +31,12 @@ const PickModal = ({ show, handleClose, setOrders }) => {
   return (
     <Modal show={show}>
       <Modal.Header onClick={() => handleClose()} closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Title>Wybierz max 5 państw</Modal.Title>
       </Modal.Header>
       <Modal.Body className="pick-country-direction">
         {destination.map((item, index) => (
           <label key={index}>
-            <input type="checkbox" onChange={handlePick} value={item[0]} />
+            <input style={{marginRight: "5px"}} type="checkbox" onChange={handlePick} value={item[0]} />
             <span>{item[0]}</span>
           </label>
         ))}

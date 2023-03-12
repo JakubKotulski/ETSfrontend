@@ -11,8 +11,10 @@ const ModalData = ({ show, close, data }) => {
 
         <Modal.Body>
           <p>Trasa: {data ? data.way : "brak"}</p>
-          <p>Początkowy stan licnzika: {data ? data.startState : "brak"}</p>
-          <p>Końcowy stan licnzika: {data ? data.endState : "brak"}</p>
+          <p>Początkowy stan licznika: {data ? data.startState : "brak"}</p>
+          <p>Końcowy stan licznika: {data ? data.endState : "brak"}</p>
+          <p>Początkowy stan licznika - puste km: {data ? data.startStateEmpty : "brak"}</p>
+          <p>Końcowy stan licznika - puste km: {data ? data.endStateEmpty : "brak"}</p>
           <p>Odległość w km: {data ? data.distance : "brak"}</p>
           <p>Kupione paliwo: {data ? data.boughtFuel : "brak"}</p>
           <p>Cena paliwa: {data ? data.fuelPrice : "brak"}</p>

@@ -110,7 +110,7 @@ const WorkShop = ({ user, date }) => {
     if (date !== 0) {
       compareDates();
     }
-  }, []);
+  }, [])
 
   return (
     <div className="workshop-container">
@@ -124,17 +124,19 @@ const WorkShop = ({ user, date }) => {
           >
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Stopień uszkodzenia</Form.Label>
-              <Form.Control onChange={getWaste} type="number" placeholder="Sopień uszkodzenia" />
+              <Form.Control onChange={getWaste} type="number" placeholder="Stopień uszkodzenia" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Stopień uszkodzenia naczepy</Form.Label>
-              <Form.Control onChange={getWasteTrailer} type="number" placeholder="Sopień uszkodzenia" />
+              <Form.Control onChange={getWasteTrailer} type="number" placeholder="Stopień uszkodzenia naczepy" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Link do zdjęcia</Form.Label>
               <Form.Control onChange={getWastePhoto} type="text" placeholder="Link do zdjęcia" />
             </Form.Group>
-            {}
+            <Button type="submit" variant="outline-dark">
+              Zatwierdź
+            </Button>
           </Form>
         </div>
         <hr className="separator"></hr>

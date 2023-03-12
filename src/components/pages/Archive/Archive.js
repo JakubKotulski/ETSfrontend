@@ -46,7 +46,7 @@ const Archive = ({ user }) => {
                 <tr key={index}>
                   <td style={{ verticalAlign: "middle" }}>{index + 1}</td>
                   <td style={{ verticalAlign: "middle" }}>{item.way}</td>
-                  <td style={{ verticalAlign: "middle" }}>{item.fuel}</td>
+                  <td style={{ verticalAlign: "middle" }}>{item.fuelConsumption}</td>
                   <td style={{ verticalAlign: "middle" }}>{item.distance}</td>
                   <td style={{ verticalAlign: "middle" }}>
                     <img style={{ width: "50%" }} src={item.file}></img>

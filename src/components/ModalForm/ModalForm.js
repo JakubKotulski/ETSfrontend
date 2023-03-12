@@ -13,6 +13,8 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
 
   const [startState, setStartState] = useState(0);
   const [endState, setEndState] = useState(0);
+  const [startStateEmpty, setStartStateEmpty] = useState(0);
+  const [endStateEmpty, setEndStateEmpty] = useState(0);
   const [fuelPrice, setFuelPrice] = useState(0);
   const [fuelAmount, setFuelAmount] = useState(0);
   const [fuelUsed, setfuelUsed] = useState(0);
@@ -27,6 +29,14 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
 
   const getEndState = (e) => {
     setEndState(e.target.value);
+  };
+
+  const getStartStateEmpty = (e) => {
+    setStartStateEmpty(e.target.value);
+  };
+
+  const getEndStateEmpty = (e) => {
+    setEndStateEmpty(e.target.value);
   };
 
   const getFuelPrice = (e) => {
@@ -76,6 +86,8 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
         id: track._id,
         startState: startState,
         endState: endState,
+        startStateEmpty: startStateEmpty,
+        endStateEmpty: endStateEmpty,
         fuelAmount: fuelAmount,
         fuelPrice: fuelPrice,
         fuelUsed: fuelUsed,
@@ -115,6 +127,18 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
                   <Form.Label>Trasa</Form.Label>
                   <Form.Control placeholder={track.way} type="text" disabled />
                 </Form.Group>
+
+                <div className="double-form-field">
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Początkowy stan licznika </Form.Label>
+                    <Form.Control onChange={getStartStateEmpty} type="number" placeholder="Puste kilometry" />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Końcowy stan licznika </Form.Label>
+                    <Form.Control onChange={getEndStateEmpty} type="number" placeholder="Puste kilometry" />
+                  </Form.Group>
+                </div>
 
                 <div className="double-form-field">
                   <Form.Group className="mb-3" controlId="formBasicPassword">
