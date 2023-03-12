@@ -54,7 +54,7 @@ const Ranking = () => {
               <td>{user.username}</td>
               <td>{user.doneOrders}</td>
               <td>{user.distance}</td>
-              <td>{user.avarageFuelConsumption}</td>
+              <td>{user.avarageFuelConsumption.toFixed(2)}</td>
             </tr>
           ))}
         </tbody>

@@ -50,6 +50,8 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
           <span className="chart-header">Pokonane km</span>
           <br />
           <span className="chart-header">Mój wynik: {distance}</span>
+          <br></br>
+          <span className="chart-header">Wynik firmy: {companyDistance}</span>
 
           <VictoryChart domainPadding={100}>
             <VictoryBar data={distanceData} x="users" y="distances" />
@@ -63,6 +65,8 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
           <span className="chart-header">Zlecenia</span>
           <br />
           <span className="chart-header">Mój wynik: {doneOrders}</span>
+          <br></br>
+          <span className="chart-header">Wynik firmy: {companyOrders}</span>
 
           <VictoryChart domainPadding={100}>
             <VictoryBar data={ordersData} x="users" y="orders" />
@@ -81,6 +85,8 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
               ? avarageFuelConsumption.toFixed(2)
               : "ładowanie danych"}
           </span>
+          <br></br>
+          <span className="chart-header">Wynik firmy: {companyFuel.toFixed(2)}</span>
 
           <VictoryChart domainPadding={100}>
             <VictoryBar data={fuelData} x="users" y="fuel" />

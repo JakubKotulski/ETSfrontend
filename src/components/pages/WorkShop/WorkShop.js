@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 import { backendUrl } from "../../../config";
+import WashProgress from "../../WashProgress/WashProgress";
 import axios from "axios";
 
 import "./WorkShop.css";
@@ -10,6 +11,7 @@ const WorkShop = ({ user, date }) => {
   const [waste, setWaste] = useState(0);
   const [wasteTrailer, setWasteTrailer] = useState(0);
   const [wastePhoto, setWastePhoto] = useState("");
+  const [wash, setWash] = useState(0);
 
   const getWaste = (e) => {
     setWaste(e.target.value);
@@ -102,15 +104,38 @@ const WorkShop = ({ user, date }) => {
     }
   };
 
+  const getWash = () => {
+    const token = JSON.parse(JSON.stringify(localStorage.getItem("token")));
+    axios({
+      method: "GET",
+      url: `${backendUrl}/me/wash`,
+      headers: {
+        Authorization: token,
+      },
+    }).then((res) => {
+      setWash(res.data.distance);
+    });
+  };
+
   const sendWash = () => {
-    console.log("Umyty");
+    const token = JSON.parse(JSON.stringify(localStorage.getItem("token")));
+    axios({
+      method: "PUT",
+      url: `${backendUrl}/me/wash`,
+      headers: {
+        Authorization: token,
+      },
+    }).then((res) => {
+      window.location.reload();
+    });
   };
 
   useEffect(() => {
     if (date !== 0) {
       compareDates();
     }
-  }, [])
+    getWash();
+  }, []);
 
   return (
     <div className="workshop-container">
@@ -141,6 +166,7 @@ const WorkShop = ({ user, date }) => {
         </div>
         <hr className="separator"></hr>
         <div className="option-box">
+          <WashProgress distance={wash} />
           <Button onClick={() => sendWash()} variant="outline-dark">
             Myjnia
           </Button>
