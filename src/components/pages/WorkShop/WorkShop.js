@@ -148,8 +148,8 @@ const WorkShop = ({ user, date }) => {
             style={{ textAlign: "center" }}
           >
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Stopień uszkodzenia</Form.Label>
-              <Form.Control onChange={getWaste} type="number" placeholder="Stopień uszkodzenia" />
+              <Form.Label>Stopień uszkodzenia pojazdu</Form.Label>
+              <Form.Control onChange={getWaste} type="number" placeholder="Stopień uszkodzenia pojazdu" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Stopień uszkodzenia naczepy</Form.Label>

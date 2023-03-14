@@ -1,12 +1,14 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-const ModalData = ({ show, close, data }) => {
+
+const ModalData = ({ show, close, data, user }) => {
+
   return (
     <div className="modal show" style={{ display: "block", position: "initial" }}>
       <Modal show={show}>
         <Modal.Header closeButton onClick={() => close()}>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>{user}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

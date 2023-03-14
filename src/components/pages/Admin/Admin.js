@@ -130,7 +130,7 @@ const Admin = () => {
             ))}
         </tbody>
       </Table>
-      <OrdersToAccept orders={orders} />
+      <OrdersToAccept orders={orders} users={users}/>
       <Table className="text-align" striped bordered hover variant="dark">
         <thead>
           <tr>

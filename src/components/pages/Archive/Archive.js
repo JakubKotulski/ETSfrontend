@@ -34,7 +34,10 @@ const Archive = ({ user }) => {
               <th>#</th>
               <th>Trasa</th>
               <th>Zuzyte paliwo</th>
+              <th>Stan licznika - start</th>
+              <th>Stan licznika - koniec</th>
               <th>Pokonane km</th>
+              <th>Uszkodzenia ładunku</th>
               <th>Zdjęcie</th>
             </tr>
           </thead>
@@ -47,7 +50,10 @@ const Archive = ({ user }) => {
                   <td style={{ verticalAlign: "middle" }}>{index + 1}</td>
                   <td style={{ verticalAlign: "middle" }}>{item.way}</td>
                   <td style={{ verticalAlign: "middle" }}>{item.fuelConsumption}</td>
+                  <td style={{ verticalAlign: "middle" }}>{item.startState}</td>
+                  <td style={{ verticalAlign: "middle" }}>{item.endState}</td>
                   <td style={{ verticalAlign: "middle" }}>{item.distance}</td>
+                  <td style={{ verticalAlign: "middle" }}>{item.wasteStuff}</td>
                   <td style={{ verticalAlign: "middle" }}>
                     <img style={{ width: "50%" }} src={item.file}></img>
                   </td>

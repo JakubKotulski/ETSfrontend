@@ -5,14 +5,14 @@ import Table from "react-bootstrap/Table";
 import ModalData from "../ModalData/ModalData";
 import { backendUrl } from "../../config";
 
-const OrdersToAccept = ({ orders }) => {
+const OrdersToAccept = ({ orders, users }) => {
   const [modalDataVisibility, setModalDataVisibility] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
+  const [username, setUsername] = useState("");
 
   const handleClose = () => setModalDataVisibility(false);
   const handleShow = () => setModalDataVisibility(true);
   const handleData = (data) => setSelectedData(data);
-
 
   const acceptOrder = (_id, userID, distance) => {
     axios({
@@ -41,6 +41,18 @@ const OrdersToAccept = ({ orders }) => {
     });
   };
 
+  const getUsername = (item) => {
+    axios({
+      method: "POST",
+      url: `${backendUrl}/userOne`,
+      data: {
+        _id: item.userID,
+      },
+    }).then((res) => {
+      setUsername(res.data.username);
+    });
+  };
+
   return (
     <>
       <Table className="text-align" striped bordered hover variant="dark">
@@ -61,9 +73,9 @@ const OrdersToAccept = ({ orders }) => {
                   <Button
                     variant="outline-info"
                     onClick={() => {
+                      getUsername(item);
                       handleData(item);
                       handleShow();
-                      console.log(item);
                     }}
                   >
                     Szczegóły
@@ -81,7 +93,7 @@ const OrdersToAccept = ({ orders }) => {
             ))}
         </tbody>
       </Table>
-      <ModalData show={modalDataVisibility} close={handleClose} open={handleShow} data={selectedData} />
+      <ModalData user={username} show={modalDataVisibility} close={handleClose} open={handleShow} data={selectedData} />
     </>
   );
 };
