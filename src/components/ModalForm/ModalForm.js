@@ -201,7 +201,7 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
 
                 <Form.Group controlId="formFile" className="mb-3">
                   <Form.Label>
-                    Zdjęcie ukończenia trasy (Konwertuje na https://www.atatus.com/tools/image-to-url)
+                    Zdjęcie ukończenia trasy - https://zapodaj.net/
                   </Form.Label>
                   <Form.Control onChange={getPhoto} type="text" placeholder="Zdjęcie ukończenia trasy" />
                 </Form.Group>

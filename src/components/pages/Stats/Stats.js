@@ -1,11 +1,10 @@
 import axios from "axios";
 import { backendUrl } from "../../../config";
 import { useEffect, useState } from "react";
-import { VictoryBar, VictoryChart } from "victory";
-
+import { VictoryBar, VictoryChart, VictoryTheme } from "victory";
 import "./Stats.css";
 
-const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
+const Stats = ({ doneOrders, distance, avarageFuelConsumption }) => {
   const [companyDistance, setCompanyDistance] = useState(0);
   const [companyOrders, setCompanyOrders] = useState(0);
   const [companyFuel, setCompanyFuel] = useState(0);
@@ -18,7 +17,6 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
       setCompanyDistance(res.data.companyDistance);
       setCompanyOrders(res.data.companyOrders);
       setCompanyFuel(res.data.companyFuel);
-      console.log(res.data.companyDistance);
     });
   };
 
@@ -53,7 +51,7 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
           <br></br>
           <span className="chart-header">Wynik firmy: {companyDistance}</span>
 
-          <VictoryChart domainPadding={100}>
+          <VictoryChart theme={VictoryTheme.material} domainPadding={100}>
             <VictoryBar data={distanceData} x="users" y="distances" />
           </VictoryChart>
         </div>
@@ -68,7 +66,7 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
           <br></br>
           <span className="chart-header">Wynik firmy: {companyOrders}</span>
 
-          <VictoryChart domainPadding={100}>
+          <VictoryChart theme={VictoryTheme.material} domainPadding={100}>
             <VictoryBar data={ordersData} x="users" y="orders" />
           </VictoryChart>
         </div>
@@ -88,7 +86,7 @@ const Stats = ({ username, doneOrders, distance, avarageFuelConsumption }) => {
           <br></br>
           <span className="chart-header">Wynik firmy: {companyFuel.toFixed(2)}</span>
 
-          <VictoryChart domainPadding={100}>
+          <VictoryChart theme={VictoryTheme.material} domainPadding={100}>
             <VictoryBar data={fuelData} x="users" y="fuel" />
           </VictoryChart>
         </div>

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { backendUrl } from "../../../config";
 import WashProgress from "../../WashProgress/WashProgress";
 import axios from "axios";
-
 import "./WorkShop.css";
 
 const WorkShop = ({ user, date }) => {
@@ -53,7 +52,7 @@ const WorkShop = ({ user, date }) => {
       },
       data: {
         insuranceMonth: date.getMonth(),
-        insuranceDay: date.getDay(),
+        insuranceDay: date.getDate(),
       },
     }).then((res) => {
       window.location.reload();
@@ -71,7 +70,7 @@ const WorkShop = ({ user, date }) => {
       },
       data: {
         technicalReviewMonth: date.getMonth(),
-        technicalReviewDay: date.getDay(),
+        technicalReviewDay: date.getDate(),
       },
     }).then((res) => {
       window.location.reload();
@@ -80,7 +79,7 @@ const WorkShop = ({ user, date }) => {
 
   const compareDates = () => {
     const token = JSON.parse(JSON.stringify(localStorage.getItem("token")));
-    if (date.getMonth() !== user.insuranceMonth && date.getDay() === user.insuranceDay) {
+    if (date.getMonth() !== user.insuranceMonth && date.getDate() === user.insuranceDay) {
       axios({
         method: "PUT",
         headers: {
@@ -91,7 +90,7 @@ const WorkShop = ({ user, date }) => {
         window.location.reload();
       });
     }
-    if (date.getMonth() !== user.technicalReviewMonth && date.getDay() === user.technicalReviewDay) {
+    if (date.getMonth() !== user.technicalReviewMonth && date.getDate() === user.technicalReviewDay) {
       axios({
         method: "PUT",
         headers: {
@@ -135,7 +134,7 @@ const WorkShop = ({ user, date }) => {
       compareDates();
     }
     getWash();
-  }, []);
+  });
 
   return (
     <div className="workshop-container">
@@ -156,7 +155,7 @@ const WorkShop = ({ user, date }) => {
               <Form.Control onChange={getWasteTrailer} type="number" placeholder="Stopień uszkodzenia naczepy" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Link do zdjęcia</Form.Label>
+              <Form.Label style={{color: "black"}}>Link do zdjęcia - https://zapodaj.net/</Form.Label>
               <Form.Control onChange={getWastePhoto} type="text" placeholder="Link do zdjęcia" />
             </Form.Group>
             <Button type="submit" variant="outline-dark">
