@@ -186,17 +186,17 @@ const ModalForm = ({ modalVisibility, closeModal, addUser, message, showMessage,
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Uszkodzenia towaru w %</Form.Label>
-                  <Form.Control onChange={getStuffDamage} type="number" placeholder="Uszkodzenia towaru" />
+                  <Form.Control onChange={getStuffDamage} step="0.01" type="number" placeholder="Uszkodzenia towaru" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Uszkodzenia naczepy w %</Form.Label>
-                  <Form.Control onChange={getSemiTrailerDamage} type="number" placeholder="Uszkodzenia naczepy" />
+                  <Form.Control onChange={getSemiTrailerDamage} step="0.01" type="number" placeholder="Uszkodzenia naczepy" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Uszkodzenia cięzarówki w %</Form.Label>
-                  <Form.Control onChange={getTruckDamage} type="number" placeholder="Uszkodzenia cięzarówki" />
+                  <Form.Control onChange={getTruckDamage} step="0.01" type="number" placeholder="Uszkodzenia cięzarówki" />
                 </Form.Group>
 
                 <Form.Group controlId="formFile" className="mb-3">
