@@ -17,6 +17,7 @@ const Admin = () => {
   const [modalDataVisibility, setModalDataVisibility] = useState(false);
   const [amount, setAmount] = useState(0);
   const [newbalance, setNewBalance] = useState(0);
+  console.log(users);
 
   const fetchUsers = async () => {
     try {
@@ -62,6 +63,19 @@ const Admin = () => {
     axios({
       method: "PUT",
       url: `${backendUrl}/admin/repair`,
+      data: {
+        amount: amount,
+        _id: id,
+      },
+    }).then((res) => {
+      window.location.reload();
+    });
+  };
+
+  const deleteUser = (id) => {
+    axios({
+      method: "DELETE",
+      url: `${backendUrl}/user`,
       data: {
         amount: amount,
         _id: id,
@@ -130,14 +144,15 @@ const Admin = () => {
             ))}
         </tbody>
       </Table>
-      <OrdersToAccept orders={orders} users={users}/>
+      <OrdersToAccept orders={orders} users={users} />
       <Table className="text-align" striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>#</th>
-            <th>Uytkownik</th>
+            <th>Uzytkownik</th>
             <th>Przegląd</th>
             <th>Ubezpieczenie</th>
+            <th>Usuń kierowce</th>
             <th>Uszkodzenia cię. w %</th>
             <th>Uszkodzenia nacz. w %</th>
             <th>Naprawa</th>
@@ -146,7 +161,7 @@ const Admin = () => {
         </thead>
         <tbody>
           <tr>
-            <td colSpan={8}>
+            <td colSpan={9}>
               <Button onClick={() => setModalVisibility(true)} variant="outline-success">
                 Dodaj uytkownika
               </Button>
@@ -158,6 +173,16 @@ const Admin = () => {
               <td style={{ verticalAlign: "middle" }}>{user.username}</td>
               <td style={{ verticalAlign: "middle" }}>{user.technicalReview ? "OK" : "Brak"}</td>
               <td style={{ verticalAlign: "middle" }}>{user.insurance ? "OK" : "Brak"}</td>
+              <td style={{ verticalAlign: "middle" }}>
+                <Button
+                  variant="outline-danger"
+                  onClick={() => {
+                    deleteUser(user._id);
+                  }}
+                >
+                  Usuń
+                </Button>
+              </td>
               <td style={{ verticalAlign: "middle" }}>{user.waste}</td>
               <td style={{ verticalAlign: "middle" }}>{user.wasteTrailer}</td>
               <td style={{ verticalAlign: "middle" }}>
