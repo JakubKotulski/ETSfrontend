@@ -222,6 +222,51 @@ const Admin = ({ adminUsername }) => {
       ) : (
         <div style={{ width: "100%" }} className="admin-panel">
           <OrdersToAccept style={{ marginLeft: "auto", marginRight: "auto" }} orders={orders} users={users} />
+          <Table className="text-align" striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Uzytkownik</th>
+                <th>Przegląd</th>
+                <th>Ubezpieczenie</th>
+                <th>Uszkodzenia cię. w %</th>
+                <th>Uszkodzenia nacz. w %</th>
+                <th>Naprawa</th>
+                <th>Zdjęcie</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={index}>
+                  <td style={{ verticalAlign: "middle" }}>{index + 1}</td>
+                  <td style={{ verticalAlign: "middle" }}>{user.username}</td>
+                  <td style={{ verticalAlign: "middle" }}>{user.technicalReview ? "OK" : "Brak"}</td>
+                  <td style={{ verticalAlign: "middle" }}>{user.insurance ? "OK" : "Brak"}</td>
+                  <td style={{ verticalAlign: "middle" }}>{user.waste}</td>
+                  <td style={{ verticalAlign: "middle" }}>{user.wasteTrailer}</td>
+                  <td style={{ verticalAlign: "middle" }}>
+                    <input
+                      type="number"
+                      onChange={getAmount}
+                      placeholder="kwota"
+                      style={{ marginBottom: "5px" }}
+                    ></input>
+                    <Button
+                      onClick={() => {
+                        payForRepair(user._id);
+                      }}
+                      variant="outline-success"
+                    >
+                      Napraw
+                    </Button>
+                  </td>
+                  <td>
+                    <img style={{ width: "90%" }} alt="Brak zdjęcia" src={user.wastePhoto}></img>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
           <ModalData show={modalDataVisibility} close={handleClose} open={handleShow} />
         </div>
       )}

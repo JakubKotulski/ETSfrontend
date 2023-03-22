@@ -48,15 +48,17 @@ const Ranking = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{user.username}</td>
-              <td>{user.doneOrders}</td>
-              <td>{user.distance}</td>
-              <td>{user.avarageFuelConsumption.toFixed(2)}</td>
-            </tr>
-          ))}
+          {users
+            .filter((user) => user.username !== "Spedytor")
+            .map((user, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{user.username}</td>
+                <td>{user.doneOrders}</td>
+                <td>{user.distance}</td>
+                <td>{user.avarageFuelConsumption.toFixed(2)}</td>
+              </tr>
+            ))}
         </tbody>
       </Table>
     </div>
