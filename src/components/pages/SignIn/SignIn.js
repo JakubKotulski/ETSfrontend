@@ -37,6 +37,7 @@ const SignIn = () => {
         localStorage.setItem("user", JSON.stringify(res.data));
         navigate("/myOrders");
       }
+      window.location.reload();
     });
   };
 

@@ -1,10 +1,10 @@
 import Navbar from "../Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 
-const YesNavbar = ({isAdmin}) => {
+const YesNavbar = ({ isAdmin, adminUsername }) => {
   return (
     <>
-      <Navbar isAdmin={isAdmin}/>
+      <Navbar isAdmin={isAdmin} adminUsername={adminUsername} />
       <Outlet />
     </>
   );

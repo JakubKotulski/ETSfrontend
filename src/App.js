@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [user, setUser] = useState([]);
   const [date, setDate] = useState(0);
+  console.log(user._id);
 
   const path = window.location.pathname;
 
@@ -62,26 +63,28 @@ function App() {
       <Router>
         <Routes>
           <Route exact={true} path="/" element={<SignIn />} />
-          <Route element={<YesNavbar isAdmin={user.isAdmin} />}>
-            <Route exact={true} path="/admin" element={<Admin />} />
+          {user._id !== undefined ? (
+            <Route element={<YesNavbar isAdmin={user.isAdmin} adminUsername={user.username} />}>
+              <Route exact={true} path="/admin" element={<Admin adminUsername={user.username} />} />
 
-            <Route path="/myOrders" element={<MyOrders userData={user} />} />
-            <Route
-              path="/statistics"
-              element={
-                <Stats
-                  username={user.username}
-                  distance={user.distance}
-                  avarageFuelConsumption={user.avarageFuelConsumption}
-                  doneOrders={user.doneOrders}
-                />
-              }
-            />
-            <Route path="/create_car" element={<CarCreate userID={user._id} />} />
-            <Route path="/ranking" element={<Ranking />} />
-            <Route path="/workshop" element={<WorkShop user={user} date={date} />} />
-            <Route path="/archive" element={<Archive user={user} />} />
-          </Route>
+              <Route path="/myOrders" element={<MyOrders userData={user} />} />
+              <Route
+                path="/statistics"
+                element={
+                  <Stats
+                    username={user.username}
+                    distance={user.distance}
+                    avarageFuelConsumption={user.avarageFuelConsumption}
+                    doneOrders={user.doneOrders}
+                  />
+                }
+              />
+              <Route path="/create_car" element={<CarCreate userID={user._id} />} />
+              <Route path="/ranking" element={<Ranking />} />
+              <Route path="/workshop" element={<WorkShop user={user} date={date} />} />
+              <Route path="/archive" element={<Archive user={user} />} />
+            </Route>
+          ) : null}
         </Routes>
       </Router>
     </div>
