@@ -17,7 +17,6 @@ const Admin = ({ adminUsername }) => {
   const [modalDataVisibility, setModalDataVisibility] = useState(false);
   const [amount, setAmount] = useState(0);
   const [newbalance, setNewBalance] = useState(0);
-  console.log(adminUsername);
 
   const fetchUsers = async () => {
     try {
@@ -221,6 +220,22 @@ const Admin = ({ adminUsername }) => {
         </div>
       ) : (
         <div style={{ width: "100%" }} className="admin-panel">
+          <Table className="text-align" striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                <th>konto firmy</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users
+                .filter((user) => user.username === "Hamdam")
+                .map((user, index) => (
+                  <tr key={index}>
+                    <td>{user.companyBalance}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </Table>
           <OrdersToAccept style={{ marginLeft: "auto", marginRight: "auto" }} orders={orders} users={users} />
           <Table className="text-align" striped bordered hover variant="dark">
             <thead>

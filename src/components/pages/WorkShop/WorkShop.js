@@ -155,7 +155,7 @@ const WorkShop = ({ user, date }) => {
               <Form.Control onChange={getWasteTrailer} type="number" placeholder="Stopień uszkodzenia naczepy" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label style={{color: "black"}}>Link do zdjęcia - https://zapodaj.net/</Form.Label>
+              <Form.Label style={{ color: "black" }}>Link do zdjęcia - https://zapodaj.net/</Form.Label>
               <Form.Control onChange={getWastePhoto} type="text" placeholder="Link do zdjęcia" />
             </Form.Group>
             <Button type="submit" variant="outline-dark">

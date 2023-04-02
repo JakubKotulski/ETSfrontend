@@ -16,7 +16,6 @@ import { useEffect, useState } from "react";
 function App() {
   const [user, setUser] = useState([]);
   const [date, setDate] = useState(0);
-  console.log(user._id);
 
   const path = window.location.pathname;
 
@@ -28,17 +27,35 @@ function App() {
     } else {
       const token = JSON.parse(JSON.stringify(localStorage.getItem("token")));
       try {
-        const response = await axios({
+        const dateToSet = new Date();
+        setDate(dateToSet);
+        axios({
           method: "POST",
           url: `${backendUrl}/welcome`,
           headers: {
             Authorization: token,
           },
+        }).then((res) => {
+          console.log(res.data);
+          setUser(res.data);
+          if (path === "/admin" && !res.data.isAdmin) {
+            window.location.href = "/myOrders";
+          }
+          if (res.data.monthDinstaneReset !== dateToSet.getMonth()) {
+            axios({
+              method: "PUT",
+              data: {
+                month: dateToSet.getMonth(),
+              },
+              url: `${backendUrl}/me/monthDistance`,
+              headers: {
+                Authorization: token,
+              },
+            }).then((res) => {
+              window.location.reload();
+            });
+          }
         });
-        setUser(response.data);
-        if (path === "/admin" && !response.data.isAdmin) {
-          window.location.href = "/myOrders";
-        }
       } catch (err) {
         if (path !== "/") {
           window.location.href = "/";
@@ -47,15 +64,14 @@ function App() {
       }
     }
   };
-
-  const updateDate = () => {
-    const dateToSet = new Date();
-    setDate(dateToSet);
-  };
+  // const updateDate = () => {
+  //   const dateToSet = new Date();
+  //   setDate(dateToSet);
+  // };
 
   useEffect(() => {
     isLogged();
-    updateDate();
+    // updateDate();
   }, []);
 
   return (

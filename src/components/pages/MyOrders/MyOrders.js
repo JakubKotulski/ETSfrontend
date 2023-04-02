@@ -105,7 +105,7 @@ const Main = ({ userData }) => {
             <PickCountries handleShow={handleShow} access={allOrders} countries={countries} />
           </div>
           <div className="half-section">
-            <ProgressInfo percent={percent} iconName={faRoad} distance={userData.distance} maxValue={maxValue} />
+            <ProgressInfo percent={percent} iconName={faRoad} distance={userData.monthDistance} maxValue={maxValue} />
             <div className="recent-order">
               <div className="description">
                 <p>Aktualna dostawa</p>
