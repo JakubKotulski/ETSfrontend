@@ -82,6 +82,10 @@ const WorkShop = ({ user, date }) => {
     if (date.getMonth() !== user.insuranceMonth && date.getDate() === user.insuranceDay) {
       axios({
         method: "PUT",
+        data: {
+          insuranceMonth: date.getMonth(),
+          insuranceDay: date.getDate(),
+        },
         headers: {
           Authorization: token,
         },
@@ -93,6 +97,10 @@ const WorkShop = ({ user, date }) => {
     if (date.getMonth() !== user.technicalReviewMonth && date.getDate() === user.technicalReviewDay) {
       axios({
         method: "PUT",
+        data: {
+          technicalReviewMonth: date.getMonth(),
+          technicalReviewDay: date.getDate(),
+        },
         headers: {
           Authorization: token,
         },
@@ -134,7 +142,7 @@ const WorkShop = ({ user, date }) => {
       compareDates();
     }
     getWash();
-  });
+  }, [date]);
 
   return (
     <div className="workshop-container">
